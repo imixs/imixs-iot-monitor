@@ -7,3 +7,39 @@ Imixs-Worklfow IoT provides a set of adapter classes to connect a IoT device to 
 For example, reaching a certain temperature range can directly trigger an alarm from a technician. 
 
 Imixs-Worklfow IoT includes a Web Server with a modern Web interface to monitor connected IoT devices and react on certain events. 
+
+
+## Sensor Data
+
+In the following basic szenario the Ardoino controller is connected directly to two external sensors. 
+
+
+
+     ╔═╧═╧═╧═╧═╧═╧══╗
+     ║ Ardoino Nano ║
+     ╚═╤═╤═╤═╤═╤═╤══╝
+         │   │          ╭────────╮ 
+         │   ╰──────────┤Sensor-2│   
+         │              ╰────────╯
+    ╭────┴───╮     
+    │Sensor-1│     
+    ╰────────╯     
+
+The data can be controlled by Imixs-IoT based on a BPMN 2.0 model definition. 
+
+
+## Inter Controller Communication
+
+In a more complex situation you can also connect an existing microcontroler to the Ardoino Contrller. In this case you need to re-map the GPIO and connect the Ardoino controller. 
+
+
+     ╔═╧═╧═╧═╧═╧═╧═╧═╧══╗
+     ║                  ║
+     ║ Ext Conroller-1  ║
+     ║                  ║
+     ╚═╤═╤═╤═╤═╤═╤═╤═╤══╝
+             │
+             ╰─────────╮
+                     ╔═╧═╧═╧═╧═╧═╧══╗
+                     ║ Ardoino Nano ║
+                     ╚═╤═╤═╤═╤═╤═╤══╝
