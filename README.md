@@ -43,3 +43,14 @@ In a more complex situation you can also connect an existing microcontroler to t
                      ╔═╧═╧═╧═╧═╧═╧══╗
                      ║ Ardoino Nano ║
                      ╚═╤═╤═╤═╤═╤═╤══╝
+
+                     
+                     
+# FAQs                     
+
+## How to solve "Errors when uploading a sketch"?
+
+If you are unable to upload a sketch to your Ardoino device check [this site for possible solutions](https://support.arduino.cc/hc/en-us/articles/4401874331410--Error-avrdude-when-uploading).
+
+
+
