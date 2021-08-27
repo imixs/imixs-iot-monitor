@@ -9,21 +9,23 @@ For example, reaching a certain temperature range can directly trigger an alarm 
 
 Imixs-Worklfow IoT includes a Web Server with a modern Web interface to monitor connected IoT devices and react on certain events. 
 
-Arduino Nano RP2040 Connect
+## Arduino Nano RP2040 Connect
 
 The Arduino Nano RP2040 Connect has the same form-factor and pinout as the original Arduino Nano 8-bit AVR board, but this is a powerful board with both an RP2040 and an ESP32, the latter embedded within a u-blox NINA-W102 WiFi and Bluetooth module.
 
 The board has some pretty impressive features:
 
-RP2040 Dual-core MCU
-WiFi 801.11b/g/n
-Bluetooth and BLE 4.2
-6-axis IMU with Machine Learning
-MEMS Microphone Module
-Cryptographic Coprocessor
-Internal switching power supply
-16Mb Flash Memory
-Onboard RGB LED
+ - RP2040 Dual-core MCU
+ - WiFi 801.11b/g/n
+ - Bluetooth and BLE 4.2
+ - 6-axis IMU with Machine Learning
+ - MEMS Microphone Module
+ - Cryptographic Coprocessor
+ - Internal switching power supply
+ - 16Mb Flash Memory
+ - Onboard RGB LED
+
+Read the [section Arduino](./doc/arduino/README.md) for details how to work with Arduino boards.
 
 ## Sensor Data
 
@@ -61,12 +63,4 @@ In a more complex situation you can also connect an existing microcontroler to t
                      ╚═╤═╤═╤═╤═╤═╤══╝
 
                      
-                     
-# FAQs                     
-
-## How to solve "Errors when uploading a sketch"?
-
-If you are unable to upload a sketch to your Ardoino device check [this site for possible solutions](https://support.arduino.cc/hc/en-us/articles/4401874331410--Error-avrdude-when-uploading).
-
-
-
+ 
