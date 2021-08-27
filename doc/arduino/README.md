@@ -105,3 +105,6 @@ Also it may help if you press the reset button on the Arduino board quickly 2 ti
 See the discussion [here for details](https://forum.arduino.cc/t/aruino-nano-rp2040-on-board-led-no-longer-blinking-on-boot/899542). This simulates new hardware and will put the MKR on a new COM port.
 
 
+## Nano RP2040 Connect not being detected on USB port 
+
+In case your Nano RP2040 dose not connect and is not being detected on USB port you can follow this [guide](https://support.arduino.cc/hc/en-us/articles/4404168794514-Nano-RP2040-Connect-not-being-detected-on-USB-port).
