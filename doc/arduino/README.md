@@ -1,4 +1,4 @@
-# aruino
+# Aruino
 
 In the following section you will find some information how to setup a aruino controller with the aruino IDE and how to install the Imixs-IoT libraries on your aruino device.
 The documentation we explain the setup based on the [aruino Nano RP2040](https://docs.arduino.cc/hardware/nano-rp2040-connect). The  RP2040 includes already a Wifi controller which makes it easy to connect the controller with a Imixs-Workflow Service. 
@@ -36,13 +36,13 @@ Now you can start the aruino IDE with:
 
 A step-by-step guide to install the Nano RP2040 Connect board can be found [here](https://docs.arduino.cc/software/ide-v1/tutorials/getting-started/cores/arduino-mbed_nano).
 
-First navigate to Tools > Board > Board Manager.
+First navigate to *Tools > Board > Board Manager*.
 
 In this dialog you can search for your Ardono Board. For the [aruino Nano RP2040](https://docs.arduino.cc/hardware/nano-rp2040-connect) find the one named **Arduino Mbed OS Nano Boards** and install it.
 
 <img src="./images/ide-screen-02.png" />
 
-Exit the board manager, and go to Tools > Board > Arduino > Arduino Mbed OS Nano Boards. Here you can see all the Mbed boards listed, where you can select the board you are using, e.g. :
+Exit the board manager, and go to *Tools > Board > Arduino > Arduino Mbed OS Nano Boards*. Here you can see all the Mbed boards listed, where you can select the board you are using, e.g. :
 
 	Tools > Board > Arduino > Arduino Mbed OS Nano Boards > aruino Nano RP2040 Connect
 
@@ -53,7 +53,7 @@ You can test the status of your board connected to your PC when you choose the m
 
 ### Reconnect the Board
 
-If you don't see your Board in the 'Board Info' dialog or *Tools > Port* did not show a connection like "/dev/ttyACM..." than your board is not detected. In this case you can quickly press the hardware reset button on your Arduino Board. This will force the detection of new hardware device on you OS. 
+If you don't see your Board in the '*Board Info' dialog* or you can't see a connection in the menu section *Tools > Port* like "/dev/ttyACM..." than your board is not detected. In this case you can quickly press the hardware reset button on your Arduino Board. This will force the detection of new hardware device on you Linux OS. 
 
 ## Testing your Board
 
@@ -81,7 +81,7 @@ After uploading the Sketch you Arduino Board should blink.
 
 You can print any log messages in your Sketch with a code like this:
 
-	Serial.println("Hello World")
+	Serial.println("Hello World");
 
 To see the output during execution open the *Serial Monitor* with Ctrl+Shift+M
 
