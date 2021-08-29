@@ -10,6 +10,7 @@
   For HTTPS see:
 
   https://techtutorialsx.com/2017/11/18/esp32-arduino-https-get-request/
+  https://maakbaas.com/esp8266-iot-framework/logs/https-requests/
   
 */
 
@@ -34,7 +35,7 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
 
-  Serial.println("Starte looop to WiFi...");
+ Serial.println("Starte looop to WiFi...");
   connectWiFi();
 
   if (client.connect(TS_HOST, 443)) {
