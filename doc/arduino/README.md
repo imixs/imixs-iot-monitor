@@ -3,6 +3,9 @@
 In the following section you will find some information how to setup a aruino controller with the aruino IDE and how to install the Imixs-IoT libraries on your aruino device.
 The documentation we explain the setup based on the [aruino Nano RP2040](https://docs.arduino.cc/hardware/nano-rp2040-connect). The  RP2040 includes already a Wifi controller which makes it easy to connect the controller with a Imixs-Workflow Service. 
 
+<img src="./images/NanoRP2040ConnectPinLayout-9605620b241bfb5c.webp" />
+
+
 ## Install the Aruino IDE
 
 First of all you should install the official Aruino IDE. A step-by-step install guide for Linux can be found [here](https://www.arduino.cc/en/Guide/Linux). 
