@@ -1,6 +1,6 @@
 # Overview
 
-Ardono Test classes and example code. The examples are based on the *Nano RP2040 Connect* featuring a Wi-Fi module.
+A basic test code running a Wifi client to access a web page via HTTPS.
 
 ## Setup arduino_secrets.h
 
@@ -10,7 +10,7 @@ To run the examples first create a file named '*arduino_secrets.h*' and edit the
 	#define SECRET_PASS "your_wifi_password"
 
 
-
+Also make sure that you have added your server root certificates.
 
 
 
