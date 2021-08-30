@@ -22,5 +22,5 @@ for the web server you try to connect to your Arduino nano. To upload a new
 Certificate use the WiFiNINA Firmware/Certificate Updater form Tools.
 
 
-
+<img src="./../../../../doc/arduino/images/wifi-02.png" />
 
