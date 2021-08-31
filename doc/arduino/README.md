@@ -5,6 +5,11 @@ The documentation we explain the setup based on the [aruino Nano RP2040](https:/
 
 <img src="./images/NanoRP2040ConnectPinLayout-9605620b241bfb5c.webp" />
 
+You will also find example and test code in the following sections:
+
+ - [WiFi Examples](./wifi)
+ - [Sensor Examples](./sensors)
+
 
 ## Install the Aruino IDE
 

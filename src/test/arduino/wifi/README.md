@@ -15,7 +15,7 @@ To run the examples first create a file named '*arduino_secrets.h*' and edit the
 	#define SECRET_PASS "your_wifi_password"
 
 
-## Upload root SSL Certivicates
+## Upload root SSL Certificates
 
 To run teh example code make sure that you have uploaded the root SSL certificates
 for the web server you try to connect to your Arduino nano. To upload a new 
