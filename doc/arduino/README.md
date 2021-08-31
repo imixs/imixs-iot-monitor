@@ -1,38 +1,38 @@
-# Aruino
+# Arduino
 
-In the following section you will find some information how to setup a aruino controller with the aruino IDE and how to install the Imixs-IoT libraries on your aruino device.
-The documentation we explain the setup based on the [aruino Nano RP2040](https://docs.arduino.cc/hardware/nano-rp2040-connect). The  RP2040 includes already a Wifi controller which makes it easy to connect the controller with a Imixs-Workflow Service. 
+In the following section you will find some information how to setup a arduino controller with the arduino IDE and how to install the Imixs-IoT libraries on your arduino device.
+The documentation we explain the setup based on the [arduino Nano RP2040](https://docs.arduino.cc/hardware/nano-rp2040-connect). The  RP2040 includes already a Wifi controller which makes it easy to connect the controller with a Imixs-Workflow Service. 
 
 <img src="./images/NanoRP2040ConnectPinLayout-9605620b241bfb5c.webp" />
 
 You will also find example and test code in the following sections:
 
- - [WiFi Examples](./wifi)
- - [Sensor Examples](./sensors)
+ - [WiFi Examples](https://github.com/imixs/imixs-iot/tree/main/src/test/arduino/wifi)
+ - [Sensor Examples](https://github.com/imixs/imixs-iot/tree/main/src/test/arduino/sensors)
 
 
-## Install the Aruino IDE
+## Install the Arduino IDE
 
-First of all you should install the official Aruino IDE. A step-by-step install guide for Linux can be found [here](https://www.arduino.cc/en/Guide/Linux). 
+First of all you should install the official arduino IDE. A step-by-step install guide for Linux can be found [here](https://www.arduino.cc/en/Guide/Linux). 
 
-Download the  latest release from [here](https://www.arduino.cc/en/software) or find all releases on the [Github release page](https://github.com/arduino/Arduino/releases/). Extract the package in your preferred directory - e.g. /opt/aruino/ide/. In the following example we use the version 1.8.15. Replace the version number with the one you have downloaded:
+Download the  latest release from [here](https://www.arduino.cc/en/software) or find all releases on the [Github release page](https://github.com/arduino/Arduino/releases/). Extract the package in your preferred directory - e.g. /opt/arduino/ide/. In the following example we use the version 1.8.15. Replace the version number with the one you have downloaded:
 
 
-	$ mkdir -p /opt/aruino/ide/
-	$ tar -xf arduino-1.8.15-linux64.tar.xz -C /opt/aruino/ide/
+	$ mkdir -p /opt/arduino/ide/
+	$ tar -xf arduino-1.8.15-linux64.tar.xz -C /opt/arduino/ide/
 	
 Switch into the IDE directory and run the install script
 
-	$ cd /opt/aruino/ide/arduino-1.8.15/
+	$ cd /opt/arduino/ide/arduino-1.8.15/
 	$ sudo ./install.sh
 
 In the install directory you will find the setup script 'arduino-linux-setup.sh'. This script will add your current user to the necessary groups (plugdev, dialout, tty, uucp) and setup your environment.
 
 	$ ./arduino-linux-setup.sh
 	
-Now you can start the aruino IDE with:
+Now you can start the arduino IDE with:
 
-	$ aruino	
+	$ arduino	
 	
 	
 <img src="./images/ide-screen-01.png" />
@@ -46,13 +46,13 @@ A step-by-step guide to install the Nano RP2040 Connect board can be found [here
 
 First navigate to *Tools > Board > Board Manager*.
 
-In this dialog you can search for your Ardono Board. For the [aruino Nano RP2040](https://docs.arduino.cc/hardware/nano-rp2040-connect) find the one named **Arduino Mbed OS Nano Boards** and install it.
+In this dialog you can search for your Ardono Board. For the [arduino Nano RP2040](https://docs.arduino.cc/hardware/nano-rp2040-connect) find the one named **Arduino Mbed OS Nano Boards** and install it.
 
 <img src="./images/ide-screen-02.png" />
 
 Exit the board manager, and go to *Tools > Board > Arduino > Arduino Mbed OS Nano Boards*. Here you can see all the Mbed boards listed, where you can select the board you are using, e.g. :
 
-	Tools > Board > Arduino > Arduino Mbed OS Nano Boards > aruino Nano RP2040 Connect
+	Tools > Board > Arduino > Arduino Mbed OS Nano Boards > arduino Nano RP2040 Connect
 
 You can test the status of your board connected to your PC when you choose the menu item  *Tools > Get Board Info*. This will open a popup diaglog with the board details:
 
@@ -110,7 +110,7 @@ In linux it may happen in rare cases that you run into a problem with USB connec
 If you are unable to upload a sketch to your Arduino device check [this site for possible solutions](https://support.arduino.cc/hc/en-us/articles/4403365313810)
 
 Also it may help if you press the reset button on the Arduino board quickly 2 times when the board is connected with your notebook. 
-See the discussion [here for details](https://forum.arduino.cc/t/aruino-nano-rp2040-on-board-led-no-longer-blinking-on-boot/899542). This simulates new hardware and will put the MKR on a new COM port.
+See the discussion [here for details](https://forum.arduino.cc/t/arduino-nano-rp2040-on-board-led-no-longer-blinking-on-boot/899542). This simulates new hardware and will put the MKR on a new COM port.
 
 
 ## Nano RP2040 Connect not being detected on USB port 
