@@ -12,6 +12,7 @@ target/
 .settings/
 .project
 .classpath
+.metadata
 
 # ignore teh arduino_secrets.h file
 arduino_secrets.h
