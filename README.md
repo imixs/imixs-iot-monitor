@@ -64,3 +64,23 @@ In a more complex situation you can also connect an existing microcontroler to t
 
                      
  
+ 
+# Docker
+ 
+To build the artifact from sources run:
+
+	$ mvn clean install
+
+To build the new Docker Image run:
+
+	$ mvn clean install -Pdocker
+	
+To run Wildfly Server in debug mode (port 8787) you can build the Docker Image with:
+
+	$ mvn clean install -Pdebug
+
+Run
+
+To start the Imixs-Process Manger with docker-compose, run:
+
+$ docker-compose -f docker-compose-dev.yaml up 

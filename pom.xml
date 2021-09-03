@@ -126,7 +126,7 @@
 										<exec executable="docker">
 											<arg value="build" />
 											<arg value="-f" />
-											<arg value="Dockerfile-wildfly-debug" />
+											<arg value="Dockerfile-Debug" />
 											<arg value="-t" />
 											<arg value="imixs/imixs-iot-monitor" />
 											<arg value="./" />

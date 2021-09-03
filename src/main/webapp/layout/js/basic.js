@@ -16,8 +16,8 @@
 			$('.content').css('margin-left', '60px');
 			$('.nav-sidebar').css('width', '60px');
 		} else {
-			$('.content').css('margin-left', '200px');
-			$('.nav-sidebar').css('width', '200px');
+			$('.content').css('margin-left', '220px');
+			$('.nav-sidebar').css('width', '220px');
 			$('.nav-sidebar label').show();
 		}
 		toggleState = !toggleState;

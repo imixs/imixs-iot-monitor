@@ -14,5 +14,7 @@ target/
 .classpath
 .metadata
 
+docker/deployments
+
 # ignore teh arduino_secrets.h file
 arduino_secrets.h
