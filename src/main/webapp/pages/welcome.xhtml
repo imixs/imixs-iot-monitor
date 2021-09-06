@@ -10,45 +10,11 @@
 
 
 
-		<div class="container" style="width: 100%;">
-
-			<div class="sub-container">
-
-				<div class="sub-container-box">
-					<h2>Wellcome</h2>
-					<!--  Singed in user -->
-					<h:panelGroup rendered="#{loginController.authenticated}">
-						<span class="typcn typcn-key"></span>
-						<h:outputText value="Login: #{loginController.userPrincipal}" />
-					</h:panelGroup>
-					<br /> Last Login: 10.0.0.
-				</div>
-				<div class="sub-container-box">
-					<h2>Models</h2>
-
-					<h:outputLink value="/pages/admin/modellist.xhtml">
-						<span class="typcn typcn-flow-merge"></span>
-						<h:outputText value="All Models" />
-					</h:outputLink>
 
 
-					
-				</div>
-				<div class="sub-container-box">
-					<h2>User Management</h2>
-					<h:outputLink value="/pages/admin/modellist.xhtml">
-						<span class="typcn typcn-user"></span>
-						<h:outputText value="All Users" />
-					</h:outputLink>
-					<br />
-					<h:outputLink value="/pages/admin/modellist.xhtml">
-						<span class="typcn typcn-group"></span>
-						<h:outputText value="All Groups" />
-					</h:outputLink>
-				</div>
-			</div>
-		</div>
 
+
+		
 		<div class="container">
 
 			<h2>Last Event</h2>
@@ -65,59 +31,23 @@
 
 		<div class="container">
 
-			<!--  Singed in user -->
-			<h:panelGroup rendered="#{loginController.authenticated}">
-				<span class="typcn typcn-key"></span>
-				<h:outputText value="Login: #{loginController.userPrincipal}" />
-			</h:panelGroup>
-			<br /> Last Login: 10.0.0.
+		<h2>Help</h2>
 
 		</div>
 
-		<div class="container" style="xwidth: 50%;">
+		<div class="container" style="width: 100%;">
 
 
+			<ui:include src="/pages/sub_view.xhtml">
+				<ui:param name="viewController" value="#{myTaskListController}" />
+				<ui:param name="title" value="#{message.my_tasklist}" />
+
+			</ui:include>
 
 
-			<p>The digitization of business processes has become a key
-				challenge for modern application design. Essentially, you only need
-				two things to do this.</p>
-
-			<ul>
-
-				<li>a process description - which you ideally create using the
-					BPMN 2.0 standard</li>
-				<li>a runtime environment - which allows you to execute and
-					persist your process instances in a secure way</li>
-			</ul>
-
-
-			<h2>Imixs Workflow</h2>
-			<p>
-				The Open Source project <a href="http://www.imixs.org"
-					target="imixs-workflow">Imixs-Workflow</a> provides you with an
-				open and powerful workflow management platform that combines the
-				design and the execution of business processes in a highly scalable
-				and easy to use environment.
-			</p>
-
-			<h2>Run with Docker</h2>
-			<p>With the Imixs Process Manager you can start quickly and
-				develop and test your own business process. And of course you can
-				customize and extend this platform and use it for development as
-				well as for production.</p>
-
-			<h2>Imixs BPMN</h2>
-			<p>
-				You can define your own business process models using the <a
-					href="https://www.imixs.org/doc/modelling/index.html"
-					target="imixs-workflow">Imixs-BPMN modeller tool</a> and you can
-				upload and execute your models directly within Imixs Process
-				Manager. General information about how to model can be found <a
-					href="https://www.imixs.org/doc/modelling/howto.html"
-					target="imixs-workflow">here</a>.
-			</p>
 		</div>
+
+
 		<div class="container">
 
 

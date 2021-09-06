@@ -189,7 +189,7 @@ a.button {
 
 input[type="button"]:hover, input[type="submit"]:hover, .button:hover, a.button:hover,
 	.imixs-button:hover {
-	background: #31b1dc;
+	background: #1c3c5e;
 	color: #ddd !important;
 }
 
@@ -322,8 +322,15 @@ th {
 
 table, td, th {
 	border: none;
+	background-color: #fff !important;
+	color: #333 !important;
 	padding: 4px;
 	border-bottom: 1px solid #ddd;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover, .button:hover, a.button:hover, .imixs-button:hover {
+    background: #145267;
+    color: #ddd !important;
 }
 
 .imixsdatatable a {
@@ -331,11 +338,11 @@ table, td, th {
 }
 
 .imixsdatatable tr:hover a {
-	color: #fff !important;
+	xcolor: #fff !important;
 }
 
 .imixsdatatable a:hover {
-	color: #fff !important;
+	xcolor: #fff !important;
 }
 
 .pull-right {

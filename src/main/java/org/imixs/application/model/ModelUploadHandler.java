@@ -29,8 +29,8 @@ package org.imixs.application.model;
 
 import java.io.Serializable;
 
-import jakarta.enterprise.context.SessionScoped;
-import jakarta.inject.Named;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import org.imixs.workflow.ItemCollection;
 

@@ -359,11 +359,19 @@
 	</build>
 
 	<dependencies>
-		<!-- Jakarta Dependencies -->
+		<!-- Jakarta Dependencies 
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-api</artifactId>
 			<version>9.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		-->
+		<!-- JEE Dependencies -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
 
