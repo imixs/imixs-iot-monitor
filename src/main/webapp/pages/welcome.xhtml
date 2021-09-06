@@ -8,67 +8,116 @@
 
 	<ui:define name="content">
 
-		<div class="row">
-			<div class="col-7">
-
-				<h1>Imixs Process Manager</h1>
-
-				<p>The digitization of business processes has become a key
-					challenge for modern application design. Essentially, you only need
-					two things to do this.</p>
-
-				<ul>
-
-					<li>a process description - which you ideally create using the
-						BPMN 2.0 standard</li>
-					<li>a runtime environment - which allows you to execute and
-						persist your process instances in a secure way</li>
-				</ul>
 
 
-				<h2>Imixs Workflow</h2>
-				<p>
-					The Open Source project <a href="http://www.imixs.org"
-						target="imixs-workflow">Imixs-Workflow</a> provides you with an
-					open and powerful workflow management platform that combines the
-					design and the execution of business processes in a highly scalable
-					and easy to use environment.
-				</p>
+		<div class="container" style="width: 100%;">
 
-				<h2>Run with Docker</h2>
-				<p>With the Imixs Process Manager you can start quickly and
-					develop and test your own business process. And of course you can
-					customize and extend this platform and use it for development as
-					well as for production.</p>
+			<div class="sub-container">
 
-				<h2>Imixs BPMN</h2>
-				<p>
-					You can define your own business process models using the <a
-						href="https://www.imixs.org/doc/modelling/index.html"
-						target="imixs-workflow">Imixs-BPMN modeller tool</a> and you can
-					upload and execute your models directly within Imixs Process
-					Manager. General information about how to model can be found <a
-						href="https://www.imixs.org/doc/modelling/howto.html"
-						target="imixs-workflow">here</a>.
-				</p>
+				<div class="sub-container-box">
+					<h2>Wellcome</h2>
+					<!--  Singed in user -->
+					<h:panelGroup rendered="#{loginController.authenticated}">
+						<span class="typcn typcn-key"></span>
+						<h:outputText value="Login: #{loginController.userPrincipal}" />
+					</h:panelGroup>
+					<br /> Last Login: 10.0.0.
+				</div>
+				<div class="sub-container-box">
+				<h2>Models</h2>
+				Some details
+				
+				</div>
+				<div class="sub-container-box">
+					<h2>User Management</h2>
+				more details</div>
 			</div>
+		</div>
 
-			<div class="col-5">
+		<div class="container">
+
+			<h2>Last Event</h2>
+				Some details
+
+		</div>
+
+		<div class="container">
+
+			<h2>Total Events</h2>
+				Some details
+		</div>
+
+
+		<div class="container">
+
+			<!--  Singed in user -->
+			<h:panelGroup rendered="#{loginController.authenticated}">
+				<span class="typcn typcn-key"></span>
+				<h:outputText value="Login: #{loginController.userPrincipal}" />
+			</h:panelGroup>
+			<br /> Last Login: 10.0.0.
+
+		</div>
+
+		<div class="container" style="xwidth: 50%;">
+
+
+
+
+			<p>The digitization of business processes has become a key
+				challenge for modern application design. Essentially, you only need
+				two things to do this.</p>
+
+			<ul>
+
+				<li>a process description - which you ideally create using the
+					BPMN 2.0 standard</li>
+				<li>a runtime environment - which allows you to execute and
+					persist your process instances in a secure way</li>
+			</ul>
+
+
+			<h2>Imixs Workflow</h2>
+			<p>
+				The Open Source project <a href="http://www.imixs.org"
+					target="imixs-workflow">Imixs-Workflow</a> provides you with an
+				open and powerful workflow management platform that combines the
+				design and the execution of business processes in a highly scalable
+				and easy to use environment.
+			</p>
+
+			<h2>Run with Docker</h2>
+			<p>With the Imixs Process Manager you can start quickly and
+				develop and test your own business process. And of course you can
+				customize and extend this platform and use it for development as
+				well as for production.</p>
+
+			<h2>Imixs BPMN</h2>
+			<p>
+				You can define your own business process models using the <a
+					href="https://www.imixs.org/doc/modelling/index.html"
+					target="imixs-workflow">Imixs-BPMN modeller tool</a> and you can
+				upload and execute your models directly within Imixs Process
+				Manager. General information about how to model can be found <a
+					href="https://www.imixs.org/doc/modelling/howto.html"
+					target="imixs-workflow">here</a>.
+			</p>
+		</div>
+		<div class="container">
 
 
 
 
 
+			<h3>Process Design</h3>
 
-				<h3>Process Design</h3>
+			<p>The Imixs Process Manager allows you to define custom forms
+				for your business process without programming. By defining an XML
+				template, you can store forms directly in a BPMN 2.0 model.</p>
 
-				<p>The Imixs Process Manager allows you to define custom forms
-					for your business process without programming. By defining an XML
-					template, you can store forms directly in a BPMN 2.0 model.</p>
-
-				<img src="/pages/model-example.png" />
-				<p>Example:</p>
-				<pre class="code">
+			<img src="/pages/model-example.png" />
+			<p>Example:</p>
+			<pre class="code">
 &lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;imixs-form&gt;
   &lt;imixs-form-section label=&quot;Order&quot;&gt;
@@ -76,8 +125,8 @@
     &lt;item name=&quot;_orderdate&quot; type=&quot;date&quot; label=&quot;Order Date:&quot; /&gt;
   &lt;/imixs-form-section&gt;
 &lt;/imixs-form&gt;</pre>
-				<p>You can create and change your models at runtime without
-					interrupting your workflow instance.</p>
+			<p>You can create and change your models at runtime without
+				interrupting your workflow instance.</p>
 
 
 
@@ -85,9 +134,7 @@
 
 
 
-			</div>
+
 		</div>
-
-
 	</ui:define>
 </ui:composition>
