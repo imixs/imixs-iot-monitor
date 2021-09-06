@@ -110,6 +110,9 @@ font-size: 1.5em;
     border: none;
 }
 
+#imixs-content .sub-container .sub-container-box .typcn {
+	margin-right:10px;
+}
 #imixs-content .sub-container .sub-container-box h2 {
 font-size: 1.5em;
 }

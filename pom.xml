@@ -57,7 +57,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.imixs.workflow.version>6.0.0</org.imixs.workflow.version>
+		<!-- 6.0.0 -->
+		<org.imixs.workflow.version>5.2.12</org.imixs.workflow.version>
+		<org.imixs.marty.version>4.2.0-SNAPSHOT</org.imixs.marty.version>
 		<custom.webResources>src/main/webapp</custom.webResources>
 		<custom.unpackTypes>war</custom.unpackTypes>
 	</properties>
@@ -238,14 +240,12 @@
 										<exec executable="docker">
 											<arg value="build" />
 											<arg value="-t" />
-											<arg
-												value="imixs/imixs-iot-monitor:${project.version}" />
+											<arg value="imixs/imixs-iot-monitor:${project.version}" />
 											<arg value="." />
 										</exec>
 										<exec executable="docker">
 											<arg value="push" />
-											<arg
-												value="imixs/imixs-iot-monitor:${project.version}" />
+											<arg value="imixs/imixs-iot-monitor:${project.version}" />
 										</exec>
 									</target>
 								</configuration>
@@ -275,14 +275,12 @@
 										<exec executable="docker">
 											<arg value="build" />
 											<arg value="-t" />
-											<arg
-												value="imixs/imixs-iot-monitor" />
+											<arg value="imixs/imixs-iot-monitor" />
 											<arg value="." />
 										</exec>
 										<exec executable="docker">
 											<arg value="push" />
-											<arg
-												value="imixs/imixs-iot-monitor" />
+											<arg value="imixs/imixs-iot-monitor" />
 										</exec>
 									</target>
 								</configuration>
@@ -353,7 +351,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-			</plugin>	
+			</plugin>
 
 		</plugins>
 
@@ -363,10 +361,10 @@
 	<dependencies>
 		<!-- Jakarta Dependencies -->
 		<dependency>
-		    <groupId>jakarta.platform</groupId>
-		    <artifactId>jakarta.jakartaee-api</artifactId>
-		    <version>9.0.0</version>
-		    <scope>provided</scope>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>9.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -401,6 +399,14 @@
 			<groupId>org.imixs.workflow</groupId>
 			<artifactId>imixs-workflow-index-lucene</artifactId>
 			<version>${org.imixs.workflow.version}</version>
+		</dependency>
+
+
+		<!-- Marty -->
+		<dependency>
+			<groupId>org.imixs.workflow</groupId>
+			<artifactId>imixs-marty</artifactId>
+			<version>${org.imixs.marty.version}</version>
 		</dependency>
 
 

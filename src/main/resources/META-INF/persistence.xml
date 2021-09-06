@@ -13,6 +13,7 @@
 		
 		<jta-data-source>jdbc/workflow</jta-data-source>
 		<jar-file>lib/imixs-workflow-engine-${org.imixs.workflow.version}.jar</jar-file>
+		<jar-file>lib/imixs-marty-${org.imixs.marty.version}.jar</jar-file>
 		<properties>
 			<!-- target-database Auto MySQL PostgreSQL  -->
 			<property name="eclipselink.target-database" value="Auto" />
