@@ -148,7 +148,7 @@ font-size: 1.5em;
 	
 }
 
-.imixs-header .typcn {
+.container .typcn {
 	margin-right: 10px;
 }
 
@@ -325,7 +325,7 @@ table, td, th {
 	background-color: #fff !important;
 	color: #333 !important;
 	padding: 4px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid red;
 }
 
 input[type="button"]:hover, input[type="submit"]:hover, .button:hover, a.button:hover, .imixs-button:hover {
@@ -333,17 +333,43 @@ input[type="button"]:hover, input[type="submit"]:hover, .button:hover, a.button:
     color: #ddd !important;
 }
 
-.imixsdatatable a {
-	color: #428bca !important;
+
+
+.imixsdatatable td input {
+	border: none;
 }
 
-.imixsdatatable tr:hover a {
-	xcolor: #fff !important;
+.imixsdatatable  td {
+	border: 1px solid #ddd;
 }
 
-.imixsdatatable a:hover {
-	xcolor: #fff !important;
+.imixsdatatable  td.ui-state-hover {
+	border: 1px solid #ddd;
 }
+
+.imixsdatatable tbody tr:HOVER td {
+	
+	background-color: #efefef !important;
+	
+}
+
+.imixsdatatable tbody tr:HOVER a {
+	color: #428bca;
+}
+
+.imixsdatatable tbody tr:hover {
+	border-left: 4px solid #428bca;
+}
+
+.imixsdatatable tbody tr td:first-child {
+	padding-left: 4px;
+}
+
+.imixsdatatable tbody tr:hover td:first-child {
+	padding-left: 3px;
+}
+
+
 
 .pull-right {
 	float: right;

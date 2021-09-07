@@ -9,29 +9,56 @@
 	<ui:define name="content">
 
 
+		<div class="container" style="display: flex;">
 
+			<div style="flex-grow: 1;">
+				<h2>Devices</h2>
 
+			
+			</div>
 
+			<div style="flex-grow: 1; text-align: center;">
+				<span style="font-size: 4em; font-weight: bold; line-height: 1em;">#{statsController.eventCount}</span>
+			</div>
 
-
-		
-		<div class="container">
-
-			<h2>Last Event</h2>
-			Some details
 
 		</div>
 
-		<div class="container">
+		<div class="container" style="display: flex;">
 
-			<h2>Total Events</h2>
-			Some details
+
+
+
+			<div style="flex-grow: 1;">
+				<h2>Total Events</h2>
+
+				<h:outputLink value="/pages/admin/modellist.xhtml">
+					<span class="typcn typcn-th-list"></span>
+					<h:outputText value="My Tasklist" />
+				</h:outputLink>
+				<br />
+				<h:outputLink value="/pages/admin/modellist.xhtml">
+					<span class="typcn typcn-th-list"></span>
+					<h:outputText value="All Events" />
+				</h:outputLink>
+			</div>
+
+			<div style="flex-grow: 1; text-align: center;">
+				<span style="font-size: 4em; font-weight: bold; line-height: 1em;">#{statsController.eventCount}</span>
+			</div>
+
+
+
+
+
+
+
 		</div>
 
 
 		<div class="container">
 
-		<h2>Help</h2>
+			<h2>Help</h2>
 
 		</div>
 
@@ -48,38 +75,6 @@
 		</div>
 
 
-		<div class="container">
 
-
-
-
-
-			<h3>Process Design</h3>
-
-			<p>The Imixs Process Manager allows you to define custom forms
-				for your business process without programming. By defining an XML
-				template, you can store forms directly in a BPMN 2.0 model.</p>
-
-			<img src="/pages/model-example.png" />
-			<p>Example:</p>
-			<pre class="code">
-&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;imixs-form&gt;
-  &lt;imixs-form-section label=&quot;Order&quot;&gt;
-    &lt;item name=&quot;_orderid&quot; type=&quot;text&quot; label=&quot;Order ID:&quot; /&gt;
-    &lt;item name=&quot;_orderdate&quot; type=&quot;date&quot; label=&quot;Order Date:&quot; /&gt;
-  &lt;/imixs-form-section&gt;
-&lt;/imixs-form&gt;</pre>
-			<p>You can create and change your models at runtime without
-				interrupting your workflow instance.</p>
-
-
-
-
-
-
-
-
-		</div>
 	</ui:define>
 </ui:composition>
