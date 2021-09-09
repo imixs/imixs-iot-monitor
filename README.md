@@ -83,4 +83,4 @@ Run
 
 To start the Imixs-Process Manger with docker-compose, run:
 
-$ docker-compose -f docker-compose-dev.yaml up 
+	$ docker-compose -f docker-compose-dev.yaml up

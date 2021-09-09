@@ -24,7 +24,11 @@
 package org.imixs.application.ui;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
@@ -34,6 +38,8 @@ import javax.inject.Named;
 
 import org.imixs.workflow.engine.DocumentService;
 import org.imixs.workflow.engine.ModelService;
+import org.imixs.workflow.engine.index.Category;
+import org.imixs.workflow.engine.index.SearchService;
 import org.imixs.workflow.exceptions.AccessDeniedException;
 import org.imixs.workflow.exceptions.ModelException;
 import org.imixs.workflow.exceptions.QueryException;
@@ -59,6 +65,9 @@ public class StatsController implements Serializable {
 	
 	@Inject
 	protected ModelService modelService;
+	
+	@Inject
+	protected SearchService searchService; 
 	
 	private static Logger logger = Logger.getLogger(StatsController.class.getName());
 
@@ -111,5 +120,92 @@ public class StatsController implements Serializable {
 	public int getModelCount() {
 		return modelService.getVersions().size();
 	}
+	
+	
+	public String getStats() {
+		
+		String result="status: ";
+		List<Category> categories = searchService.getTaxonomy("device","$workflowstatus");
+		
+		for (Category category: categories) {
+			result=result+category.getName() + " = " + category.getCount()  + "\n";
+			Map<String, Integer> labels = category.getLabels();
+			for (Map.Entry<String, Integer> entry : labels.entrySet()) {
+			    result=result+"       "+ entry.getKey()+ " = " + entry.getValue()  + "\n";
+			}
+		}
+		
+		return result;
+	}
+	
+	public Map<String, Integer> getLabels(String name) {
+		List<Category> categories = searchService.getTaxonomy(name);
+		
+		if (categories!=null && categories.size()>0) {
+			return categories.get(0).getLabels();
+		}
+		
+		return null;
+		
+		
+	}
    
+	
+	
+	   /**
+     * 
+     * <pre>
+     *  {
+            labels : [ 'Red', 'Blue', 'Yellow' ],
+            datasets : [ {
+                label : 'My First Dataset',
+                data : [ 300, 50, 100 ],
+                backgroundColor : [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)' ]
+            } ]
+        }
+     * </pre>
+     * 
+     * @return
+     */
+    public String buildChartData(String group) {
+    	
+    	List<Category> categories = searchService.getTaxonomy(group);
+		
+		if (categories==null|| categories.size()==0) {
+			return "";
+		}
+		
+        Map<String, Integer> labels = categories.get(0).getLabels();
+        // build a list of all lables....
+        
+        
+        String result = "{";
+
+        // Lables
+        result = result + "labels : [ ";
+        result = result + labels.keySet().stream().collect(Collectors.joining("','", "'", "'"));
+        result = result + "],";
+
+        // Datasets
+        result = result + " datasets : [ { ";
+        result = result + " label : '" + group + "', ";
+
+        // build array of overall count
+        List<String> statusCount = new ArrayList<String>();
+        for (Map.Entry<String, Integer> entry : labels.entrySet()) {
+        	statusCount.add(""+ entry.getValue() );
+		}
+        result = result + " data: [ " + statusCount.stream().collect(Collectors.joining(",")) + "],";
+
+        // colors...
+        result = result + " backgroundColor : [\n" + "                        'rgb(255, 99, 132)',\n"
+                + "                        'rgb(54, 162, 235)',\n" + "                        'rgb(255, 205, 86)' ]";
+
+        result = result + " } ] }";
+        return result;
+    }
+
 }

@@ -18,7 +18,8 @@ Via the Rest API which is part of the Imixs-Workflow engine you can create and p
 		<item name="$modelversion"><value xsi:type="xs:string">1.0</value></item>
 		<item name="$taskid"><value xsi:type="xs:int">1000</value></item>
 		<item name="$eventid"><value xsi:type="xs:int">10</value></item>
-		<item name="_subject">
+		<item name="device"><value xsi:type="xs:string">Arduino Nano</value></item>
+		<item name="metrics">
 	            <value xsi:type="xs:string">some data...</value>
 	            <value xsi:type="xs:string">more data...</value>
 	        </item>

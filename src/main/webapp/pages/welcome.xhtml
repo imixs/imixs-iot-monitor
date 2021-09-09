@@ -9,49 +9,93 @@
 	<ui:define name="content">
 
 
+		<script type="text/javascript">
+			/*<![CDATA[*/
+				
+			// set json objects with monitoring datasets 
+			imixsOfficeMonitor.workflowChart = #{statsController.buildChartData('$workflowstatus')};
+			imixsOfficeMonitor.devicesChart = #{statsController.buildChartData('device')};
+			
+			$(document).ready(
+							function() {
+						
+								// devices chart
+								var ctx = document.getElementById('deviceChart').getContext('2d');
+								if (ctx) {
+									var overallChart = new Chart(ctx, {
+										type : 'doughnut',
+										data : imixsOfficeMonitor.devicesChart,
+										options: {
+											    responsive: false,
+											    plugins: {
+											      legend: {
+											        position: 'right',
+											      },
+											      title: {
+											        display: true
+											      }
+											    }
+										}
+									});
+								}
+								
+								
+								// workflow chart
+								var ctx = document.getElementById('workflowChart').getContext('2d');
+								if (ctx) {
+									var overallChart = new Chart(ctx, {
+										type : 'doughnut',
+										data : imixsOfficeMonitor.workflowChart,
+										options: {
+										    responsive: false,
+										    plugins: {
+										      legend: {
+										        position: 'right',
+										      },
+										      title: {
+										        display: true
+										      }
+										    }
+									}										
+									});
+								}
+								
+							});
+			
+			/*]]>*/
+		</script>
+
+
 		<div class="container" style="display: flex;">
 
 			<div style="flex-grow: 1;">
 				<h2>Devices</h2>
-
-			
+				
+				<!-- workflow View -->
+				<div class="monitoring-pane">
+					<canvas id="deviceChart"></canvas>
+				</div>
 			</div>
 
 			<div style="flex-grow: 1; text-align: center;">
 				<span style="font-size: 4em; font-weight: bold; line-height: 1em;">#{statsController.eventCount}</span>
 			</div>
-
 
 		</div>
 
 		<div class="container" style="display: flex;">
 
-
-
-
 			<div style="flex-grow: 1;">
 				<h2>Total Events</h2>
-
-				<h:outputLink value="/pages/admin/modellist.xhtml">
-					<span class="typcn typcn-th-list"></span>
-					<h:outputText value="My Tasklist" />
-				</h:outputLink>
-				<br />
-				<h:outputLink value="/pages/admin/modellist.xhtml">
-					<span class="typcn typcn-th-list"></span>
-					<h:outputText value="All Events" />
-				</h:outputLink>
+				<!-- workflow View -->
+				<div class="monitoring-pane">
+					<canvas id="workflowChart"></canvas>
+				</div>
 			</div>
 
 			<div style="flex-grow: 1; text-align: center;">
 				<span style="font-size: 4em; font-weight: bold; line-height: 1em;">#{statsController.eventCount}</span>
 			</div>
-
-
-
-
-
-
 
 		</div>
 
@@ -63,7 +107,6 @@
 		</div>
 
 		<div class="container" style="width: 100%;">
-
 
 			<ui:include src="/pages/sub_view.xhtml">
 				<ui:param name="viewController" value="#{myTaskListController}" />
