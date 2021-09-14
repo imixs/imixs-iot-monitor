@@ -11,6 +11,8 @@
 #include <DHT.h>
 #include <DHT_U.h>
 
+#define DHT_max_temp 28
+
 #define DHTPIN 2     // Digital pin connected to the DHT sensor Pin that is connected in the sensor 
 // Feather HUZZAH ESP8266 note: use pins 3, 4, 5, 12, 13 or 14 --
 // Pin 15 can work but DHT must be disconnected during program upload.
@@ -68,9 +70,13 @@ void loop() {
     Serial.println(F("Error reading temperature!"));
   }
   else {
-    Serial.print(F("Temperature: "));
-    Serial.print(event.temperature);
-    Serial.println(F("°C"));
+       if (event.temperature >= DHT_max_temp){
+         Serial.println ("temperature over 27C");
+                                              }
+                                              else 
+                                                   Serial.print(F("Temperature: "));
+                                                   Serial.print(event.temperature);
+                                                   Serial.println(F("°C"));
   }
   // Get humidity event and print its value.
   dht.humidity().getEvent(&event);
