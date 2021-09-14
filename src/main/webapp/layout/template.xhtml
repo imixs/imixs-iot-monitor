@@ -31,6 +31,11 @@
 	<script type="text/javascript"
 		src="#{facesContext.externalContext.requestContextPath}/layout/js/basic.js"></script>
 
+	<!-- Load the marty component script -->
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/marty/imixs-marty.js?build=#{app.application_build_timestamp}"></script>
+
+
 	<!-- Fonts
 	    ================================================== -->
 	<link rel="stylesheet" type="text/css"
@@ -44,6 +49,10 @@
 		charset="UTF-8" type="text/css" rel="stylesheet" />
 	<link
 		href="#{facesContext.externalContext.requestContextPath}/layout/css/imixs-layout.css"
+		charset="UTF-8" type="text/css" rel="stylesheet" />
+
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/marty/imixs-marty.css?build=#{app.application_build_timestamp}"
 		charset="UTF-8" type="text/css" rel="stylesheet" />
 
 	<link

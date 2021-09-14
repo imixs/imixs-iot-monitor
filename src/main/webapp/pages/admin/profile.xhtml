@@ -1,0 +1,186 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:i="http://xmlns.jcp.org/jsf/composite/imixs"
+	xmlns:marty="http://xmlns.jcp.org/jsf/composite/marty"
+	template="/layout/template.xhtml">
+
+
+	<f:metadata>
+		<f:viewAction action="#{workflowController.onLoad()}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$(document).ready(function() {
+				// set default role IMIXS-WORKFLOW-Author if no role is yet set...
+				// test if we have already values for display name
+				var dispn=$("input[id$='displayname_id']").val();
+				if (!dispn || dispn=="") {
+					// seems to be a new profile...
+					$("input[id$='user_groups:1']").prop('checked', true);
+				}
+			});
+		/*]]>*/
+		</script>
+		
+		<f:view>
+			<h:form>
+				<div class="imixs-form">
+					<div class="imixs-header">
+						<h1>
+							<h:outputText
+								value="#{message['profile.title']}: #{workflowController.workitem.item['txtName']} " />
+						</h1>
+					</div>
+
+					<!-- ########## Error ########## -->
+					<ui:include src="/pages/error_message.xhtml" />
+
+					<div class="imixs-body">
+
+						<div class="imixs-tabs">
+							<ul>
+								<li><a href="#tab-1">#{message['profile.sub_title_general']}</a></li>
+								
+							</ul>
+
+							<div id="tab-1">
+
+
+								<div class="imixs-form-panel imixs-form-section-2">
+									<!-- Enable local database security? -->
+									<h:panelGroup>
+
+										<dl>
+											<dt>
+												#{message['profile.userid']}<span class="imixs-required">*</span>
+											</dt>
+											<dd>
+
+												<h:inputText required="true" id="txtname_id"
+													disabled="#{! empty workflowController.workitem.item['txtName']}"
+													value="#{workflowController.workitem.item['txtName']}" />
+
+											</dd>
+										</dl>
+										<dl>
+											<dt>
+												<h:outputLabel value="#{message['profile.password']}" />
+											</dt>
+											<dd>
+												<h:inputSecret redisplay="true" required="false"
+													value="#{workflowController.workitem.item['txtPassword']}" />
+											</dd>
+										</dl>
+									</h:panelGroup>
+									<dl>
+										<dt>
+											<h:outputLabel value="#{message['profile.displayname']}">
+											</h:outputLabel>
+											<span class="imixs-required">*</span>
+										</dt>
+										<dd>
+											<h:inputText required="true"
+												value="#{workflowController.workitem.item['txtUserName']}"
+												id="displayname_id">
+											</h:inputText>
+
+
+										</dd>
+									</dl>
+																		
+								
+
+									<dl>
+										<dt>
+											<h:outputLabel for="email_id"
+												value="#{message['profile.email']}">
+
+											</h:outputLabel>
+											<span class="imixs-required">*</span>
+										</dt>
+										<dd>
+											<h:inputText required="true"
+												value="#{workflowController.workitem.item['txtEmail']}"
+												id="email_id">
+											</h:inputText>
+										</dd>
+									</dl>
+									
+									
+									<dl>
+											<dt>
+												<h:outputLabel value="#{message['profile.groups']}" />
+											</dt>
+											<dd>
+												<h:selectManyCheckbox layout="pageDirection" id="user_groups"
+													value="#{workflowController.workitem.itemListArray['txtGroups']}">
+													<c:forEach
+														items="#{setupController.workitem.itemList['usergroups']}"
+														var="group">
+														<f:selectItem itemLabel="#{group}" itemValue="#{group}"></f:selectItem>
+													</c:forEach>
+												</h:selectManyCheckbox>
+											</dd>
+										</dl>
+								</div>
+
+
+							
+								<!-- User Icon -->
+								<div class="imixs-form-panel">
+
+									<h2>User Icon</h2>
+
+
+									<h:panelGroup layout="block" id="usericonpanel"
+										style="float: left; margin-right: 20px;">
+										<h:graphicImage styleClass="imixs-user-icon"
+											rendered="#{! empty workflowController.workitem.item['txtusericon']}"
+											value="/api/snapshot/#{workflowController.workitem.item['$uniqueid']}/file/#{workflowController.workitem.item['txtusericon']}">
+										</h:graphicImage>
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="imixs-form-section"
+										style="clear: none; width:80%;">
+
+										<i:imixsFileUpload id="file_upload_id"
+											workitem="#{workflowController.workitem}"
+											context_url="#{facesContext.externalContext.requestContextPath}/api/workflow/workitem/#{workflowController.workitem.item['$uniqueid']}"
+											hideattachments="true" />
+
+										<div style="clear: left;" />
+
+										<h:commandButton value="#{message.remove}"
+											rendered="#{! empty workflowController.workitem.item['txtusericon']}"
+											actionListener="#{userController.removeUserIcon()}">
+											<f:ajax render="usericonpanel"></f:ajax>
+										</h:commandButton>
+
+									</h:panelGroup>
+								</div>
+							</div>
+
+
+
+						
+							
+						</div>
+					</div>
+
+					<!-- form-body end -->
+					<ui:include src="/pages/admin/sub_footer.xhtml">
+						<ui:param name="action" value="/pages/admin/profilelist" />
+					</ui:include>
+				</div>
+			</h:form>
+		</f:view>
+	</ui:define>
+
+
+
+</ui:composition>
+

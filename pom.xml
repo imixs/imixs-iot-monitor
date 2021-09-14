@@ -60,6 +60,7 @@
 		<!-- 6.0.0 -->
 		<org.imixs.workflow.version>5.2.13-SNAPSHOT</org.imixs.workflow.version>
 		<org.imixs.marty.version>4.2.0-SNAPSHOT</org.imixs.marty.version>
+		<microprofile.version>2.2</microprofile.version>
 		<custom.webResources>src/main/webapp</custom.webResources>
 		<custom.unpackTypes>war</custom.unpackTypes>
 	</properties>
@@ -372,6 +373,15 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Microprofile -->
+		<dependency>
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<version>${microprofile.version}</version>
+			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
 

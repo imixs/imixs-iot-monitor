@@ -325,7 +325,7 @@ table, td, th {
 	background-color: #fff !important;
 	color: #333 !important;
 	padding: 4px;
-	border-bottom: 1px solid red;
+
 }
 
 input[type="button"]:hover, input[type="submit"]:hover, .button:hover, a.button:hover, .imixs-button:hover {
@@ -372,10 +372,10 @@ input[type="button"]:hover, input[type="submit"]:hover, .button:hover, a.button:
 
 
 .monitoring-pane {
-	xmax-width: 200px;
-	xmax-height: 100px;
+	position: relative;
+	top: -80px;
+	max-height: 180px;
 }
-
 
 
 .pull-right {

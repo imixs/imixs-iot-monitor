@@ -1,0 +1,157 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:marty="http://xmlns.jcp.org/jsf/composite/marty"
+	xmlns:i="http://xmlns.jcp.org/jsf/composite/imixs"
+	template="/layout/template.xhtml">
+
+	<!-- The view accepts the params 'id' and 'parent' -->
+	<f:metadata>
+		<ui:param name="parentSpace" value="#{teamController.getSpaceById(param.parent)}"></ui:param>
+		<f:viewAction action="#{workflowController.onLoad()}" if="#{not empty param.id}" />
+		<f:viewAction action="#{workflowController.create(propertyController.getProperty('setup.system.model'),100,param.parent)}" 
+			if="#{empty param.id}"  />
+		<f:viewAction action="#{workflowController.workitem.setItemValue('space.parent.name',parentSpace.getItemValueString('name'))}" 
+			if="#{not empty parentSpace}"  />
+	</f:metadata>
+
+	<ui:define name="content">
+		<f:view>
+			<h:form id="space_form_id">
+
+				<div class="imixs-form">
+					<div class="imixs-header">
+						<h1>
+							<h:outputText value="#{message['space.title']}: " />
+							<h:outputText
+								rendered="#{! empty workflowController.workitem.item['space.parent.name']}"
+								value="#{workflowController.workitem.item['space.parent.name']}" />
+							<h:outputText
+								rendered="#{! empty workflowController.workitem.item['space.parent.name']}"
+								value="." />
+							<h:outputText
+								value="#{workflowController.workitem.item['space.name']} " />
+						</h1>						
+					</div>
+					
+					<!-- ########## Error ########## -->
+					<ui:include src="/pages/error_message.xhtml" />
+
+					<div class="imixs-body">
+						<div class="imixs-tabs">
+							<ul>
+								<li><a href="#tab-1">#{message['space.sub_general']}</a></li>
+							</ul>
+
+							<div id="tab-1">
+
+								<div class="ui-state-highlight ui-corner-all"
+									style="margin-bottom: 10px; padding: .5em;">
+									<p>#{message['space.help_general']}</p>
+								</div>
+
+								<div class="imixs-form-panel">
+									<dl class="columns-1">
+										<dt>
+											<h:outputLabel for="name_id" value="#{message.name}">
+												<h:message style="color: red" for="name_id"
+													showSummary="true" showDetail="false" />
+											</h:outputLabel>
+										</dt>
+										<dd>
+											<h:outputText
+												rendered="#{! empty workflowController.workitem.item['space.parent.name']}"
+												value="#{workflowController.workitem.item['space.parent.name']}." />
+											<h:inputText style="width: 20em;" required="true"
+												value="#{workflowController.workitem.item['space.name']}"
+												id="name_id">
+											</h:inputText>
+										</dd>
+
+										<dt>
+											<h:outputLabel for="description_id"
+												value="#{message['space.description']}">
+												<h:message style="color: red" for="description_id"
+													showDetail="false" showSummary="true" />
+											</h:outputLabel>
+										</dt>
+
+										<dd>
+											<h:inputTextarea required="false"
+												value="#{workflowController.workitem.item['description']}"
+												id="description_id" style="height: 5em; width: 95%">
+											</h:inputTextarea>
+										</dd>
+
+									</dl>
+								</div>
+
+
+								<div class="imixs-form-panel">
+
+									<h2>Team</h2>
+
+									<div class="imixs-form-section-3">
+
+
+										<!-- ******** space Manager ********* -->
+										<dl>
+											<dt>#{message['space.manager']}</dt>
+											<dd>
+												<marty:userListInput
+													value="#{workflowController.workitem.itemList['space.manager']}"
+													editmode="true" />
+											</dd>
+										</dl>
+
+
+										<!-- ******** space Team ********* -->
+										<dl>
+											<dt>#{message['space.team']}</dt>
+											<dd>
+												<marty:userListInput
+													value="#{workflowController.workitem.itemList['space.team']}"
+													editmode="true" />
+											</dd>
+										</dl>
+
+										<!-- ******** space Assitenz ********* -->
+										<dl>
+											<dt>#{message['space.assist']}</dt>
+											<dd>
+												<marty:userListInput
+													value="#{workflowController.workitem.itemList['space.assist']}"
+													editmode="true" />
+											</dd>
+										</dl>
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+						</div>
+					</div>
+					<!-- form-body end -->
+
+					<ui:include src="/pages/admin/sub_footer.xhtml">
+						<ui:param name="action" value="/pages/admin/spaces" />
+					</ui:include>
+
+				</div>
+			</h:form>
+
+
+
+		</f:view>
+	</ui:define>
+
+
+
+</ui:composition>
+
