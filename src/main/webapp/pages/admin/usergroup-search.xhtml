@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:marty="http://xmlns.jcp.org/jsf/composite/marty"
+	xmlns:i="http://xmlns.jcp.org/jsf/composite/imixs">
+
+	<!-- Cargosoft Search integration
+	
+		This subform is loaded by the form_basic.xhtml page.
+		
+		The subform  provides a jsf commandScript which calls the cargosoftController.searchCreditor method in the backend.
+			
+		The script below inits a autocompletion feature for the input field. 
+		See imixs-office.autocompletion.js 
+
+		See also:
+		https://stackoverflow.com/questions/16588327/how-to-invoke-a-jsf-managed-bean-on-a-html-dom-event-using-native-javascript
+		https://dzone.com/articles/execute-a-jsf-ajax-request-by-just-a-function-call
+		https://www.w3schools.com/howto/howto_js_autocomplete.asp
+	 -->
+  	<h:commandScript name="martyUserSearch" action="#{userInputController.searchUser()}" 
+  			 render="marty-userinput-resultlist" onevent="imixsMarty.userSearchShowResult" />
+	
+	
+	<script type="text/javascript">
+		/*<![CDATA[*/
+			
+			// init ml input fields...
+			$(document).ready(function() {
+			
+				// add autocomplete feature to cdtr.number...
+				var creditorField= $("input[data-item='cdtr.number']");
+				$(creditorField).each(function() {
+					$(this).addClass("marty-userinput");
+					//$(creditorField).attr('data-resultlist', 'autocomplete-resultlist-usersearch');
+					imixsMarty.userInputInit(this,martyUserSearch,'marty-userinput-resultlist',selectCdtrCallback);
+				});
+				
+				// add cargsoft label if available
+				var cdtrName="#{workitem.item['cdtr.name.cargosoft']}";
+				//alert(cdtrName);
+				var inputElement=$("input[data-item='cdtr.number']");
+				inputElement.after( "<span id='cdtr-name-id' class='small'>" + cdtrName + "</p>" );
+			});
+		
+		    // schneide die kreditornnummer aus dem selectierten Text aus (wir brauchen nur die)
+			function selectCdtrCallback(selection) {
+		    	alert('lustig');
+				// extract the number between start and ' - '
+				var cdtrNo=selection.substring(0,selection.indexOf(' - '));
+				var cdtrName=selection.substring(selection.indexOf(' - ')+3);
+				var inputElement=$("input[data-item='cdtr.number']");
+				inputElement.val(cdtrNo);
+				// remove old cdtr.name
+				$('#cdtr-name-id').remove();
+				// append span with cdtr.name....
+				inputElement.after( "<span id='cdtr-name-id' class='small'>helo" + cdtrName + "</p>" );
+			}
+
+		/*]]>*/
+	</script>
+		
+	<div style="position: relative;">
+		<h:inputText value="#{workitem.item['cdtr.number']}" pt:data-item="cdtr.number" />
+		<!-- user profile suggest list -->
+		<h:panelGroup id="marty-userinput-resultlist" layout="block" class="marty-userinput-resultlist">
+			<ui:repeat var="suggest" value="#{userInputController.searchResult}">
+				<div class="marty-userinput-resultlist-element" onclick="imixsMarty.selectUserID('#{suggest}')">
+					<a href="#">
+						<h:outputText value="#{suggest.item['txtusername']}" escape="false"/>
+					</a>
+				</div>
+			</ui:repeat>
+		</h:panelGroup>
+		
+	</div>			
+			
+
+				
+</ui:composition>
+
+
