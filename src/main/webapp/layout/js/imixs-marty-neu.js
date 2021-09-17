@@ -17,9 +17,114 @@ var currentSelectCallback;
 IMIXS.org.imixs.marty = (function() {
 	
 
+	// init user input fields...
+	$(document).ready(function() {
+
+		// add autocomplete feature to al user inputs...
+		var creditorField= $("input[data-item='marty.user.input']");
+		$(creditorField).each(function() {
+			
+			imixsMarty.userInputInit(this,martyUserSearch,'marty-userinput-resultlist'); // optional callback method allowed here!
+		});
+		
+	
+	});
+
+
+
+
+
+	
+	/*
+	 * initializes an input element for autocompletion. 
+	 * the param 'resultlistid' is optional and defines the element 
+	 * containing the search result.
+	 * The selectCallback method is optional and triggered when a new element was selected 
+	 * from the suggest list
+	 */
+	var userInputInit = function(inputElement, searchCallback, resultlistId, selectCallback) {
+		
+		// should be hindden
+		$(inputElement).hide();
+		
+		// set id for result list element
+		if (!resultlistId || resultlistId==='') {
+			resultlistId='autocomplete-resultlist'; // default name
+		} 
+		
+		
+		
+		// add the user search  dummy field ...
+		
+		$(inputElement).after( '<input type="text" class="marty-userinput"  id="marty-userinput-'+inputElement.name+'" />' );
+		// now we can select the new element with the next method
+		var searchInputElement=$(inputElement).next();
+		
+		$(searchInputElement).attr('data-resultlist', resultlistId);
+		
+		
+		// add a input event handler with delay to serach for suggestions....
+		$(searchInputElement).on('input', delay(function() {
+			if (!autocompleteSearchReady) {
+				return; // start only after first key down! (see below)
+			}
+			// store the current input name
+			autocompleteInputID = $(this).attr('id');
+			
+			//alert(autocompleteInputID);
+			currentSelectCallback=selectCallback;
+			searchCallback({ phrase: this.value });
+		}, 500)).trigger('input');
+	
+	
+		// hide the suggest list on blur event
+		$(searchInputElement).on("blur", delay(function(event) {
+			$("[id$=" + $(this).data('resultlist')  + "]").hide();
+		}, 200));
+	
+	
+		/*execute a function presses a key on the keyboard:*/
+		$(searchInputElement).keydown(function(e) {
+			
+			autocompleteSearchReady=true; // init serach mode
+			if (e.keyCode == 40) {
+		        /*If the arrow DOWN key is pressed,
+		        increase the currentFocus variable:*/
+				autocompleteSelectNextElement(this);
+			} else if (e.keyCode == 38) { //up
+		        /*If the arrow UP key is pressed,
+		        decrease the currentFocus variable:*/
+				autocompleteSelectPrevElement(this);
+			} else if (e.keyCode == 13) {
+				/*If the ENTER key is pressed, prevent the form from being submitted,*/
+				e.preventDefault();
+				selectActiveElement(this);			
+			}
+		});
+	
+		// turn autocomplete of
+		$(searchInputElement).attr('autocomplete', 'off');
+	},
+
+
+	/**
+	 * This mehtod shows the search result panel and places it below the current input element
+	 */
+	userSearchShowResult = function(data) {
+		autcompleteSelectedElement = -1;
+		var status = data.status;
+		if (status === "success") {
+			// select the inital input element by its name...
+			var inputElement = $('input[id ="' + autocompleteInputID + '"]');
+			
+			
+			// now we pull the result html list to this input field.....
+			$("[id$=" +  inputElement.data('resultlist')  + "]").insertAfter(inputElement).show();
+		}
+	},
 
 	/* Helper method to select the current element in the result list */
-	var selectActiveElement = function(inputElement) {
+	selectActiveElement = function(inputElement) {
 		var id=$(inputElement).data('resultlist');
 		var parent=$( "div[id$='" + id +"']" );
 		var resultElementListActive = $(".marty-userinput-resultlist-element.active",parent);
@@ -62,25 +167,12 @@ IMIXS.org.imixs.marty = (function() {
 	},
 
 
-	/**
-	 * This mehtod shows the search result panel and places it below the current input element
-	 */
-	userSearchShowResult = function(data) {
-		autcompleteSelectedElement = -1;
-		var status = data.status;
-		if (status === "success") {
-			// select the inital input element by its name...
-			var inputElement = $('input[name ="' + autocompleteInputID + '"]');
-			// now we pull the result html list to this input field.....
-			$("[id$=" +  inputElement.data('resultlist')  + "]").insertAfter(inputElement).show();
-		}
-	},
 
 
 
 	selectUserID = function(userid,username) {
 		// show the username in the serach field..
-		var inputSearchField = $('input[name ="' + autocompleteInputID + '"]');
+		var inputSearchField = $('input[id ="' + autocompleteInputID + '"]');
 		inputSearchField.val(username);
 		
 		// find the value field to store the userid (type=hidden)
@@ -94,63 +186,6 @@ IMIXS.org.imixs.marty = (function() {
 		}
 	},
 
-
-	
-	/*
-	 * initializes an input element for autocompletion. 
-	 * the param 'resultlistid' is optional and defines the element 
-	 * containing the search result.
-	 * The selectCallback method is optional and triggered when a new element was selected 
-	 * from the suggest list
-	 */
-	userInputInit = function(inputElement, searchCallback, resultlistId, selectCallback) {
-		
-		// set id for result list element
-		if (!resultlistId || resultlistId==='') {
-			resultlistId='autocomplete-resultlist'; // default name
-		} 
-		$(inputElement).attr('data-resultlist', resultlistId);
-		
-		// add a input event handler with delay to serach for suggestions....
-		$(inputElement).on('input', delay(function() {
-			if (!autocompleteSearchReady) {
-				return; // start only after first key down! (see below)
-			}
-			// store the current input name
-			autocompleteInputID = inputElement.name;
-//			alert(autocompleteInputID);
-			currentSelectCallback=selectCallback;
-			searchCallback({ phrase: this.value });
-		}, 500)).trigger('input');
-	
-	
-		// hide the suggest list on blur event
-		$(inputElement).on("blur", delay(function(event) {
-			$("[id$=" + $(this).data('resultlist')  + "]").hide();
-		}, 200));
-	
-	
-		/*execute a function presses a key on the keyboard:*/
-		$(inputElement).keydown(function(e) {
-			autocompleteSearchReady=true; // init serach mode
-			if (e.keyCode == 40) {
-		        /*If the arrow DOWN key is pressed,
-		        increase the currentFocus variable:*/
-				autocompleteSelectNextElement(this);
-			} else if (e.keyCode == 38) { //up
-		        /*If the arrow UP key is pressed,
-		        decrease the currentFocus variable:*/
-				autocompleteSelectPrevElement(this);
-			} else if (e.keyCode == 13) {
-				/*If the ENTER key is pressed, prevent the form from being submitted,*/
-				e.preventDefault();
-				selectActiveElement(this);			
-			}
-		});
-	
-		// turn autocomplete of
-		$(inputElement).attr('autocomplete', 'off');
-	},
 
 
 	/*

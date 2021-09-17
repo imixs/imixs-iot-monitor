@@ -21,6 +21,9 @@
 	<ui:define name="content">
 		<f:view>
 			<h:form id="space_form_id">
+			
+				<!-- Marty Userinput -->
+				<ui:include src="/pages/admin/marty-user-search.xhtml" />
 
 				<div class="imixs-form">
 					<div class="imixs-header">
@@ -91,10 +94,20 @@
 										
 										<dt>Team Single User Test:</dt>
 										<dd>
-											<ui:include src="/pages/admin/user-search.xhtml">
+										
+											<h:inputText style="width: 20em;" pt:data-item="marty.user.input"
+												value="#{workflowController.workitem.item['neuer.space.manager']}" />
 												
-												<ui:param name="value" value="#{workflowController.workitem.item['neuer.space.manager']}" />
-											</ui:include>
+										
+										</dd>
+										
+										<dt>Team Single User Test2:</dt>
+										<dd>
+										
+											<h:inputText style="width: 20em;" pt:data-item="marty.user.input"
+												value="#{workflowController.workitem.item['neuer.space.team']}" />
+												
+										
 										</dd>
 
 									</dl>

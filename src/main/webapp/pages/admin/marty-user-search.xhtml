@@ -11,38 +11,6 @@
   			 render="marty-userinput-resultlist" onevent="imixsMarty.userSearchShowResult" />
 	
 	
-	<script type="text/javascript">
-		/*<![CDATA[*/
-			
-			// init ml input fields...
-			$(document).ready(function() {
-			
-				// add autocomplete feature to al user inputs...
-				var creditorField= $("input[data-item='marty.user.input']");
-				$(creditorField).each(function() {
-					$(this).addClass("marty-userinput");
-					imixsMarty.userInputInit(this,martyUserSearch,'marty-userinput-resultlist'); // optional callback method allowed here!
-				});
-				
-				// add user name to dummy field ...
-				//var cdtrName="#{workitem.item['cdtr.name.cargosoft']}";
-				//alert(cdtrName);
-				//var inputElement=$("input[data-item='cdtr.number']");
-				//inputElement.after( "<span id='cdtr-name-id' class='small'>" + cdtrName + "</p>" );
-			});
-
-		/*]]>*/
-	</script>
-		
-		
-		
-		
-	<div style="position: relative;">
-	username=#{userInputController.getUserName(value)}
-		<!-- hidden field holding the userId -->
-		<h:inputHidden value="#{value}"/>
-		<!-- dummy input with autocomplete search -->
-		<input type="text" name="marty.user.input.xxx" data-item="marty.user.input" style="width:200px;" />
 		<!-- user profile suggest list -->
 		<h:panelGroup id="marty-userinput-resultlist" layout="block" class="marty-userinput-resultlist">
 			<ui:repeat var="suggest" value="#{userInputController.searchResult}">
@@ -54,7 +22,7 @@
 			</ui:repeat>
 		</h:panelGroup>
 		
-	</div>			
+			
 			
 
 				

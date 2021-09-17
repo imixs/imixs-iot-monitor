@@ -12,10 +12,9 @@
 .marty-userinput-resultlist {
 	display: none;
 	width: 100%;
-	margin-top: 20px;
+	margin-top: -2px;
 	position: absolute;
-	z-index: 100;
-	top: 9px;
+	z-index: 1;
 	border: 1px solid #145267;
 	border-top:none;
 	background: #fff;

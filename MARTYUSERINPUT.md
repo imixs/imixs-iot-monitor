@@ -7,7 +7,7 @@ The Imixs-Marty provides an autocomplete feature for user input elements. This f
 To integrate and activate the feature you need at least to insert the marty-usersearch subview
 
 
-	<ui:include src="marty-user-search.xhtml"></ui:include>
+	<ui:include src="marty-user-search.xhtml" />
 											
 
 ## Activate an Input Field
