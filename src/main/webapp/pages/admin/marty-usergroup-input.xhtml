@@ -15,17 +15,16 @@
 	 
 	
 	 
-	<h:inputTextarea style="xdisplay:none;" pt:data-item="marty.user.input" value="#{value}" converter="org.imixs.VectorConverter" >
+	<h:inputTextarea style="display:none;" pt:data-item="marty.user.input" value="#{value}" converter="org.imixs.VectorConverter" >
 		<f:ajax  render="datalist"></f:ajax>
 	</h:inputTextarea>
-	<h:inputText styleClass="marty-userinput"
-		pt:data-username="#{userInputController.getUserName(value)}" />
+	<h:inputText styleClass="marty-userinput" />
 		
 	<!-- User name data table -->
 	<h:panelGroup id="datalist">
 
 
-		<table class="usergrouptable" >
+		<table class="marty-usergrouptable" >
 			<ui:repeat var="record" value="#{userInputController.getSortedProfilelist(value)}">
 				<tr>
 					<td style="width:100%;"><h:outputText value="#{record.item['txtUserName']}" title="#{record.item['txtEmail']}"

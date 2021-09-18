@@ -49,7 +49,7 @@ IMIXS.org.imixs.marty = (function() {
 	var userInputInit = function(inputElement, searchCallback, resultlistId, selectCallback) {
 		
 		// should be hindden
-		//$(inputElement).hide();
+		$(inputElement).hide();
 		
 		// set id for result list element
 		if (!resultlistId || resultlistId==='') {
@@ -59,11 +59,15 @@ IMIXS.org.imixs.marty = (function() {
 		
 		
 		// now we can select the new element with the next method
-		var searchInputElement=$(inputElement).next();
-		
+		var searchInputElement=$(inputElement).next();		
 		$(searchInputElement).attr('data-resultlist', resultlistId);
-		var username=$(searchInputElement).data('username') 
-		$(searchInputElement).val(username);
+		
+		// single user 
+		if (searchInputElement.is("input")) {
+			var username=$(searchInputElement).data('username') 
+			$(searchInputElement).val(username);
+		}
+		
 		
 		// add a input event handler with delay to serach for suggestions....
 		$(searchInputElement).on('input', delay(function() {
@@ -82,6 +86,11 @@ IMIXS.org.imixs.marty = (function() {
 		// hide the suggest list on blur event
 		$(searchInputElement).on("blur", delay(function(event) {
 			$("[id$=" + $(this).data('resultlist')  + "]").hide();
+			
+			// if single input than reset value...
+			var username=$(searchInputElement).data('username');
+			$(searchInputElement).val(username);
+			
 		}, 200));
 	
 	
@@ -103,6 +112,22 @@ IMIXS.org.imixs.marty = (function() {
 				selectActiveElement(this);			
 			}
 		});
+		
+		/* delete single input entry on '' */
+		$(searchInputElement ).on( "change", function() {
+		 	var value=$(this).val();
+		    if (value=="") {
+				// clear value
+				var inputField = $(searchInputElement ).prev();
+				inputField.val('');
+				$(searchInputElement ).val('');
+		
+		
+				$(searchInputElement).data('username','');
+				//$("[id$=" + $(searchInputElement).data('resultlist')  + "]").hide();
+			}
+		});
+		
 	
 		// turn autocomplete of
 		$(searchInputElement).attr('autocomplete', 'off');
@@ -182,12 +207,26 @@ IMIXS.org.imixs.marty = (function() {
 			// show the username in the serach field..
 			inputSearchField.val(username);
 			inputField.val(userid);
+			
+			// update data 
+			inputSearchField.data('username',username);
 		}
 		// user list 
 		if (inputField.is("textarea")) {
 			var list= inputField.val();
-			list=list + userid+"\n";
-			inputField.val(list);
+			
+			var list=inputField.val().split(/\r?\n/);
+			var newListe="";
+			$.each(list, function( key, value ) {
+				if (value!='') {
+					newListe=newListe+value+"\n";
+				}
+			});
+			newListe=newListe+userid+"\n";
+			inputField.val(newListe);
+			
+			
+			inputField.val(newListe);
 			// trigger on change event
 			inputField.trigger('change');
 			// clear input
@@ -197,8 +236,7 @@ IMIXS.org.imixs.marty = (function() {
 	},
 	
 	
-	/* deletes a given user id form a usergroup list
-	*/
+	/* Deletes a given user id form a usergroup list */
 	deleteUserID = function(link) {
 		// find the value field based on the given link.
 		var parent=$(link).closest( "span[id$='datalist']" );
@@ -211,7 +249,7 @@ IMIXS.org.imixs.marty = (function() {
 			var list=inputField.val().split(/\r?\n/);
 			var newListe="";
 			$.each(list, function( key, value ) {
-			  	if (value!=userid) {
+			  	if (value!=userid && value!="\n" && value!="") {
 					newListe=newListe+value+"\n";
 				}
 			});

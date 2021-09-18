@@ -56,3 +56,12 @@
 .marty-userinput-resultlist-element.active a {
   color: #ffffff;
 }
+
+
+.marty-usergrouptable td {
+	border-bottom: 1px solid #ccc;
+}
+
+.marty-usergrouptable td .typcn {
+	color: #999;
+}
