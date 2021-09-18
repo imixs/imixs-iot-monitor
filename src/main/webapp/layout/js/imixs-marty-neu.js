@@ -20,10 +20,14 @@ IMIXS.org.imixs.marty = (function() {
 	// init user input fields...
 	$(document).ready(function() {
 
-		// add autocomplete feature to al user inputs...
-		var creditorField= $("input[data-item='marty.user.input']");
-		$(creditorField).each(function() {
-			
+		// add autocomplete feature to all user inputs...
+		var userInputField= $("input[data-item='marty.user.input']");
+		$(userInputField).each(function() {
+			imixsMarty.userInputInit(this,martyUserSearch,'marty-userinput-resultlist'); // optional callback method allowed here!
+		});
+		
+		var userGroupInputField= $("textarea[data-item='marty.user.input']");
+		$(userGroupInputField).each(function() {
 			imixsMarty.userInputInit(this,martyUserSearch,'marty-userinput-resultlist'); // optional callback method allowed here!
 		});
 		
@@ -45,7 +49,7 @@ IMIXS.org.imixs.marty = (function() {
 	var userInputInit = function(inputElement, searchCallback, resultlistId, selectCallback) {
 		
 		// should be hindden
-		$(inputElement).hide();
+		//$(inputElement).hide();
 		
 		// set id for result list element
 		if (!resultlistId || resultlistId==='') {
@@ -54,14 +58,12 @@ IMIXS.org.imixs.marty = (function() {
 		
 		
 		
-		// add the user search  dummy field ...
-		
-		$(inputElement).after( '<input type="text" class="marty-userinput"  id="marty-userinput-'+inputElement.name+'" />' );
 		// now we can select the new element with the next method
 		var searchInputElement=$(inputElement).next();
 		
 		$(searchInputElement).attr('data-resultlist', resultlistId);
-		
+		var username=$(searchInputElement).data('username') 
+		$(searchInputElement).val(username);
 		
 		// add a input event handler with delay to serach for suggestions....
 		$(searchInputElement).on('input', delay(function() {
@@ -69,7 +71,7 @@ IMIXS.org.imixs.marty = (function() {
 				return; // start only after first key down! (see below)
 			}
 			// store the current input name
-			autocompleteInputID = $(this).attr('id');
+			autocompleteInputID = $(this).attr('name');
 			
 			//alert(autocompleteInputID);
 			currentSelectCallback=selectCallback;
@@ -115,7 +117,7 @@ IMIXS.org.imixs.marty = (function() {
 		var status = data.status;
 		if (status === "success") {
 			// select the inital input element by its name...
-			var inputElement = $('input[id ="' + autocompleteInputID + '"]');
+			var inputElement = $('input[name ="' + autocompleteInputID + '"]');
 			
 			
 			// now we pull the result html list to this input field.....
@@ -171,19 +173,55 @@ IMIXS.org.imixs.marty = (function() {
 
 
 	selectUserID = function(userid,username) {
-		// show the username in the serach field..
-		var inputSearchField = $('input[id ="' + autocompleteInputID + '"]');
-		inputSearchField.val(username);
-		
-		// find the value field to store the userid (type=hidden)
+		// find the value field and the search field
+		var inputSearchField = $('input[name ="' + autocompleteInputID + '"]');
 		var inputField = $(inputSearchField ).prev();
-		inputField.val(userid);
 		
-		
-		// optional callback method if defined...
-		if (currentSelectCallback) {
-			currentSelectCallback(userid,username);
+		// single user 
+		if (inputField.is("input")) {
+			// show the username in the serach field..
+			inputSearchField.val(username);
+			inputField.val(userid);
 		}
+		// user list 
+		if (inputField.is("textarea")) {
+			var list= inputField.val();
+			list=list + userid+"\n";
+			inputField.val(list);
+			// trigger on change event
+			inputField.trigger('change');
+			// clear input
+			inputSearchField.val('');			
+		}
+		
+	},
+	
+	
+	/* deletes a given user id form a usergroup list
+	*/
+	deleteUserID = function(link) {
+		// find the value field based on the given link.
+		var parent=$(link).closest( "span[id$='datalist']" );
+		var inputField=$(parent).prevAll('textarea');
+		
+		var userid=$(link).data('userid');
+		
+		// only user list is supported 
+		if (inputField.is("textarea")) {
+			var list=inputField.val().split(/\r?\n/);
+			var newListe="";
+			$.each(list, function( key, value ) {
+			  	if (value!=userid) {
+					newListe=newListe+value+"\n";
+				}
+			});
+			inputField.val(newListe);
+			// trigger on change event
+			inputField.trigger('change');
+				
+		}
+		
+		
 	},
 
 
@@ -209,6 +247,7 @@ IMIXS.org.imixs.marty = (function() {
 		
 		userInputInit : userInputInit,
 		userSearchShowResult : userSearchShowResult,
+		deleteUserID: deleteUserID,
 		selectUserID : selectUserID
 	};
 
